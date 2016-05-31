@@ -1,0 +1,9 @@
+login:
+    path:      /login
+    defaults:  { _controller: AppBundle:User:login }
+user_new:
+    path:      /users/new
+    defaults:  { _controller: AppBundle:User:new }
+user_list:
+    path:      /users/
+    defaults:  { _controller: AppBundle:User:list }

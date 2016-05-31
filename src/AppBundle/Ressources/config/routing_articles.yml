@@ -1,0 +1,19 @@
+article_list:
+    path:      /
+    defaults:  { _controller: AppBundle:Article:list }
+article_new:
+    path:      /new
+    defaults:  { _controller: AppBundle:Article:new }
+article_edit:
+    path:      /edit/{id}
+    defaults:  { _controller: AppBundle:Article:edit }
+    requirements:
+        page:  \d+
+article_view:
+    path:      /{slug}
+    defaults:  { _controller: AppBundle:Article:view }
+article_remove:
+    path:      /remove/{id}
+    defaults:  { _controller: AppBundle:Article:remove }
+    requirements:
+        page:  \d+

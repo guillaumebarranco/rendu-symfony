@@ -1,0 +1,19 @@
+category_list:
+    path:      /
+    defaults:  { _controller: AppBundle:Category:list }
+category_new:
+    path:      /new
+    defaults:  { _controller: AppBundle:Category:new }
+category_edit:
+    path:      /edit/{id}
+    defaults:  { _controller: AppBundle:Category:edit }
+    requirements:
+        page:  \d+
+category_view:
+    path:      /{slug}
+    defaults:  { _controller: AppBundle:Category:view }
+category_remove:
+    path:      /remove/{id}
+    defaults:  { _controller: AppBundle:Category:remove }
+    requirements:
+        page:  \d+

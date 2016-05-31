@@ -1,0 +1,48 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        in_memory:
+            memory:
+                users:
+                    admin:
+                        password: admin
+                        roles: 'ROLE_ADMIN'
+        administrators:
+            memory:
+                users:
+                    gba:
+                        password: hashed_secret
+                        roles: ['ROLE_USER']
+                    hhamon:
+                        password: hashed_azerty
+                        roles: ['ROLE_TRAINER']
+                    fabpot:
+                        password: hashed_qwerty
+                        roles: ['ROLE_TRAINER', 'ROLE_ADMIN']
+        our_db_provider:
+            entity:
+                class: AppBundle:User
+                property: username
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: ~
+            form_login:
+                provider: our_db_provider
+                check_path: /login
+                login_path: /login
+                default_target_path: article_list
+
+    access_control:
+        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: ROLE_ADMIN }
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+        AppBundle\Entity\User: sha512

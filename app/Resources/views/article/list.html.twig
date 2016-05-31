@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	{% for flash_message in app.session.flashBag.get('success') %}
+	    <div class="flash-success">
+	        {{ flash_message }}
+	    </div>
+	{% endfor %}
+
+	<form action="{{ path('article_list') }}" method="get">
+
+		<select name="category">
+			<option value="all">All</option>
+
+			{% for category in categories %}
+	
+				{% if category.id  == app.request.query.get('category') %}
+					<option value="{{ category.id }}" selected>{{ category.type }}</option>
+				{% else %}
+					<option value="{{ category.id }}">{{ category.type }}</option>
+				{% endif %}
+
+			{% endfor %}
+		</select>
+
+		<input type="text" value="{{app.request.query.get('keywords')}}" name="keywords">
+
+		<button>Filtrer</button>
+	</form>
+
+	<div>
+		<a href="{{ path('article_new')}}">Créer un article</a>
+	</div>
+
+    {% for article in articles %}
+        <a href="{{ path('article_view', {slug: article.slug}) }}">
+            <h4>{{ article.title }}</h4>
+        </a>
+
+
+        <p>
+            {{ article.content[:20] }}...
+        </p>
+
+		<div>
+			<a href="{{ path('article_remove', {id:article.id}) }}">Remove Article</a>
+		</div>
+
+        <hr>
+    {% endfor %}
+{% endblock %}

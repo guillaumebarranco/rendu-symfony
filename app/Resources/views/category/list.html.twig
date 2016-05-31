@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	{% for flash_message in app.session.flashBag.get('success') %}
+	    <div class="flash-success">
+	        {{ flash_message }}
+	    </div>
+	{% endfor %}
+
+	<div>
+		<a href="{{ path('category_new')}}">Créer une categorie</a>
+	</div>
+
+    {% for category in categorys %}
+        
+        <h4>{{ category.type }}</h4>
+
+		<div>
+			<a href="{{ path('category_edit', {id:category.id}) }}">Edit category</a>
+		</div>
+
+		<div>
+			<a href="{{ path('category_remove', {id:category.id}) }}">Remove category</a>
+		</div>
+
+        <hr>
+    {% endfor %}
+{% endblock %}

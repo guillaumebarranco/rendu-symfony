@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<div>
+		<a href="{{ path('category_list')}}">Retour à la liste des catégories</a>
+	</div>
+
+	{{ form(form, {attr: {novalidate: 'novalidate'}}) }}
+{% endblock %}

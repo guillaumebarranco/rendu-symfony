@@ -1,0 +1,10 @@
+articles:
+    resource: "@AppBundle/Ressources/config/routing_articles.yml"
+    prefix: /articles
+categories:
+    resource: "@AppBundle/Ressources/config/routing_categories.yml"
+    prefix: /categories
+users:
+    resource: "@AppBundle/Ressources/config/routing_users.yml"
+    prefix: /
+
