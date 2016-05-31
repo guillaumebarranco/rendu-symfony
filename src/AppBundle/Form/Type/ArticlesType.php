@@ -14,6 +14,7 @@ class ArticlesType extends AbstractType
     {
         $builder
             ->add('title', TextType::class)
+            ->add('keywords', TextType::class)
             ->add('content', TextareaType::class)
         ;
     }

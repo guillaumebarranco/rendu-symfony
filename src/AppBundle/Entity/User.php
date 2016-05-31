@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -11,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity
  * @ORM\Table
  */
-class User extends BaseUser implements UserInterface, \Serializable {
+class User implements UserInterface, \Serializable {
 
     /**
      * @ORM\Id()

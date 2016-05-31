@@ -61,6 +61,24 @@ class ArticleController extends Controller {
         return $this->redirectToRoute('article_list');
     }
 
+    function moveFile($file, $source = '/') {
+
+        $source = $source."/../bundles/framework/images/upload/";
+
+        return 'test.png';
+
+        $filename = $source.time().'_'.$file['name'];
+        $result = '';
+
+        if(move_uploaded_file($file['tmp_name'], $filename)) {
+
+        } else {
+            $result = 'Erreur !';
+        }
+
+        return $result;
+    }
+
     public function newAction(Request $request) {
 
         $article = new Articles();
@@ -70,6 +88,13 @@ class ArticleController extends Controller {
         if (isset($request) && $form->handleRequest($request)->isValid()) {
 
             $author = $this->getDoctrine()->getRepository('AppBundle:User')->find(1);
+
+            dump($request);
+            die;
+
+            $picture = $this->moveFile($request, $request->getBaseUrl());
+
+            $article->setPicture($picture);
 
             $article->setAuthor($author);
             $article->setCreatedAt();

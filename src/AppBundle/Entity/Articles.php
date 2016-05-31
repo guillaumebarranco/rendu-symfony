@@ -53,6 +53,11 @@ class Articles {
     protected $keywords;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    protected $picture;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     protected $created_at;
@@ -124,6 +129,12 @@ class Articles {
         }
         public function setUpdatedAt() {
             $this->updated_at = new \Datetime();
+        }
+        public function getPicture() {
+            return $this->picture;
+        }
+        public function setPicture($picture) {
+            $this->picture = $picture;
         }
 
 
