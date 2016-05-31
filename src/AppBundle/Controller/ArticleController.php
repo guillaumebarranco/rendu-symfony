@@ -89,9 +89,6 @@ class ArticleController extends Controller {
 
             $author = $this->getDoctrine()->getRepository('AppBundle:User')->find(1);
 
-            dump($request);
-            die;
-
             $picture = $this->moveFile($request, $request->getBaseUrl());
 
             $article->setPicture($picture);
